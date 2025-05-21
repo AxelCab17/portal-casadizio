@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Wi-Fi Gratis - Casa Dizio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://i.imgur.com/6MkMOeo.jpg');
+      background-size: cover;
+      background-position: top;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    form {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 400px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    input[type="submit"] {
+      background-color: #e74c3c;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #c0392b;
+    }
+    a { color: #f1c40f; }
+  </style>
+</head>
+<body>
+
+  <p>Completá este formulario para acceder al Wi-Fi y enterarte de nuestras promociones y premios exclusivos.</p>
+
+  <form id="wifiForm">
+    <input type="text" name="nombre" placeholder="Nombre" required><br>
+    <input type="text" name="apellido" placeholder="Apellido" required><br>
+    <input type="email" name="correo" placeholder="Correo electrónico" required><br>
+
+    <select name="genero" required>
+      <option value="">Seleccioná tu género</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Otro">Otro</option>
+      <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+    </select><br>
+
+    <input type="date" name="fecha_nacimiento" required><br>
+
+    <label>
+      <input type="checkbox" required>
+      Acepto los <a href="#">términos y condiciones</a>
+    </label><br><br>
+
+    <input type="submit" value="Conectarse">
+  </form>
+
+  <script>
+    document.getElementById("wifiForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Detiene el envío tradicional
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch("https://script.google.com/macros/s/AKfycbxCSJ4D5IKTv5_1bliifElQxQEptwdaDolSXPMnG2m1d0NLxEdPT9MSRE0r1ofkyeMW7Q/exec", {
+        method: "POST",
+        body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          alert("¡Gracias! Ahora serás redirigido al menú.");
+          // Cambiá esta URL por la del menú real de tu negocio
+          window.location.href = "https://www.instagram.com/restaurantecasadizio?igsh=NzB5dWhkdTRyMGw5";
+        } else {
+          alert("Ocurrió un error al enviar el formulario.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Error de conexión. Intentalo nuevamente.");
+      });
+    });
+  </script>
+
+</body>
+</html>
